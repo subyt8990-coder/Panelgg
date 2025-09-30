@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FF Fan Panel — Headshot Stats</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo-section">
+      <div class="logo">FF</div>
+      <div>
+        <div class="title">Free Fire — Headshot Panel (Fan UI)</div>
+        <div class="subtitle"></div>
+      </div>
+    </div>
+    <div class="controls-header">
+      <select id="playerSelect"></select>
+      <button class="btn" onclick="downloadReport()">Export</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Player Card -->
+    <div class="card">
+      <div class="player-card">
+        <div class="avatar" id="avatarElm"><span id="avatarInitial">A</span></div>
+        <div class="p-info">
+          <h3 id="playerName">PlayerName</h3>
+          <p id="playerUid">UID: 123456789</p>
+          <div class="meta">
+            <div class="chip" id="rankChip">Gold IV</div>
+            <div class="chip" id="levelChip">Lv. 70</div>
+            <div class="chip" id="hsChip">HS: 42%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview">
+        <div class="overview-title">Overview</div>
+        <div class="stat-row">
+          <div>
+            <div class="stat-label">Total Kills</div>
+            <div class="stat-small">Across tracked matches</div>
+          </div>
+          <div id="totalKills">1,248</div>
+        </div>
+        <div class="stat-row">
+          <div>
+            <div class="stat-label">Matches Played</div>
+            <div class="stat-small">Last 30 matches</div>
+          </div>
+          <div id="matchesPlayed">30</div>
+        </div>
+        <div class="stat-row">
+          <div>
+            <div class="stat-label">Average K/D</div>
+            <div class="stat-small">Kill/Death Ratio</div>
+          </div>
+          <div id="avgKD">4.2</div>
+        </div>
+
+        <div class="controls">
+          <button class="btn" onclick="simulateUpdate()">Refresh</button>
+          <button class="btn primary" onclick="toggleFollow()">Follow</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Headshot Widget -->
+    <div class="card center-card">
+      <div class="hs-widget">
+        <div class="circle">
+          <svg width="220" height="220" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1">
+                <stop offset="0%" stop-color="#ff9a9e"/>
+                <stop offset="100%" stop-color="#ff6b6b"/>
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="40" stroke="rgba(255,255,255,0.06)" stroke-width="12" fill="none"></circle>
+            <circle cx="50" cy="50" r="40" stroke="url(#g)" stroke-width="12" fill="none" stroke-linecap="round"
+              stroke-dasharray="0 251.2" id="progressCircle"></circle>
+          </svg>
+          <div class="percent">
+            <div class="num" id="hsPercent">0%</div>
+            <div class="lbl">Headshot Rate</div>
+          </div>
+        </div>
+
+        <div class="stats-list">
+          <div class="stat-row">
+            <div>
+              <div class="stat-label">Top Headshot Match</div>
+              <div class="stat-small">Most headshots in one match</div>
+            </div>
+            <div id="topHs">12</div>
+          </div>
+          <div class="stat-row">
+            <div>
+              <div class="stat-label">Recent HS Avg</div>
+              <div class="stat-small">Last 5 matches</div>
+            </div>
+            <div id="recentAvg">38%</div>
+          </div>
+          <div class="stat-row">
+            <div>
+              <div class="stat-label">Best Weapon</div>
+              <div class="stat-small">Highest HS weapon</div>
+            </div>
+            <div id="bestWeapon">AWM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Matches -->
+    <div class="card recent">
+      <h4>Recent Matches</h4>
+      <div id="matchesList"></div>
+      <div class="tip">Tip:</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
